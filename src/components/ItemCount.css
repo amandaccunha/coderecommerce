@@ -1,0 +1,32 @@
+.item-count {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .controls button {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .add-button {
+    background-color: #1db954;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .add-button:hover {
+    background-color: #17a144;
+  }
+  
