@@ -1,10 +1,9 @@
-// src/containers/ItemListContainer.jsx
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fetchProducts } from '../data/products';
 
 const ItemListContainer = ({ greeting }) => {
-  const { categoryId } = useParams(); // <- agora está certo!
+  const { categoryId } = useParams();
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -17,7 +16,7 @@ const ItemListContainer = ({ greeting }) => {
       <ul>
         {items.map(item => (
           <li key={item.id}>
-            <Link to={`/item/${item.id}`}>{item.name}</Link>
+            <a href={`/item/${item.id}`}>{item.name}</a>
           </li>
         ))}
       </ul>

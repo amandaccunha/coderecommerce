@@ -1,4 +1,5 @@
-import React from 'react';
+// src/components/NavBar.jsx
+import { Link } from 'react-router-dom';
 import CartWidget from './CartWidget';
 import './NavBar.css';
 
@@ -7,9 +8,10 @@ const NavBar = () => {
     <nav className="navbar">
       <h1 className="logo">🎵 MusicStore</h1>
       <ul className="nav-links">
-        <li><a href="#">Início</a></li>
-        <li><a href="#">Catálogo</a></li>
-        <li><a href="#">Contato</a></li>
+        <li><Link to="/">Início</Link></li>
+        <Link to="/category/rock">Rock</Link>
+        <Link to="/category/pop">Pop</Link>
+        <Link to="/category/jazz">Jazz</Link>
       </ul>
       <CartWidget />
     </nav>
