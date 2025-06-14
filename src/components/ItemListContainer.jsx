@@ -1,12 +1,27 @@
-import React from 'react';
-import './ItemListContainer.css';
+// src/containers/ItemListContainer.jsx
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { fetchProducts } from '../data/products';
 
 const ItemListContainer = ({ greeting }) => {
+  const { categoryId } = useParams(); // <- agora está certo!
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetchProducts(categoryId).then(setItems);
+  }, [categoryId]);
+
   return (
-    <section className="item-list-container">
-      <h2>{greeting}</h2>
-      {/* Em breve: lista de álbuns */}
-    </section>
+    <div className="item-list-container">
+      {greeting && <h2>{greeting}</h2>}
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>
+            <Link to={`/item/${item.id}`}>{item.name}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 import { fetchProducts } from '../data/products';
 
 const ItemListContainer = ({ greeting }) => {
-  const { categoriaId } = useParams();
+  const { categoryId } = useParams();
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetchProducts(categoriaId).then(setItems);
-  }, [categoriaId]);
+    fetchProducts(categoryId).then(setItems);
+  }, [categoryId]);
 
   return (
     <div className="item-list-container">

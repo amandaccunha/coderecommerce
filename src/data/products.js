@@ -1,24 +1,15 @@
-const products = [
-    { id: '1', name: 'Álbum Rock 1', category: 'rock' },
-    { id: '2', name: 'Álbum Pop 1', category: 'pop' },
-    { id: '3', name: 'Álbum Jazz 1', category: 'jazz' },
-  ];
-  
-  export const fetchProducts = (categoryId) =>
-    new Promise((resolve) => {
-      setTimeout(() => {
-        if (categoryId) {
-          resolve(products.filter(prod => prod.category === categoryId));
-        } else {
-          resolve(products);
-        }
-      }, 1000);
-    });
-  
-  export const fetchProductById = (id) =>
-    new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(products.find(prod => prod.id === id));
-      }, 1000);
-    });
-  
+import { collection, getDocs, query, where, doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase/fireconfig"; // verifique se este caminho está certo
+
+export const fetchProducts = async (categoryId) => {
+  const ref = collection(db, "items");
+  const q = categoryId ? query(ref, where("category", "==", categoryId)) : ref;
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+};
+
+export const fetchProductById = async (id) => {
+  const docRef = doc(db, "items", id);
+  const docSnap = await getDoc(docRef);
+  return docSnap.exists() ? { id: docSnap.id, ...docSnap.data() } : null;
+};
